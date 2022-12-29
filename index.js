@@ -94,59 +94,70 @@ var totalMonths = finances.length
 var total = 0
 var average = 0
 var averageChange
-
-var greatestIncrease
+var net = 0
+var greatestIncrease = ["", 0] 
 var currentIncrease
-
-var greatestDecrease
+var newArray = []
+var greatestDecrease = ["", 9999999999999]
+var netChange = 0
 
 //total number of months
 //console.log(totalMonths);
 
 //net total amount of Profit/Losses over the entire period
-for (var i = 0; i < totalMonths; i++) {
-   // console.log(finances[i][1]);
-    total = total+finances[i][1];
+for (var i = 0; i < finances.length; i++) {
+   for ( var j = 0; j < finances[i].length; j++) {
+    if ( typeof finances[i][j] !== "string") {
+         total += finances[i][j];
+      //   console.log(total);
+         change = finances[i][j] - net;
+      //   console.log(change);
+         net = finances[i][j];
+      //   console.log(net);
+         newArray.push(change);
+
+         //The greatest increase in profits (date and amount) over the entire period.
+         if ( change > greatestIncrease[1] ) {
+            greatestIncrease = [finances[i][0], finances[i][1]]
+         }
+
+         //The greatest decrease in losses (date and amount) over the entire period.
+         if ( change < greatestDecrease[1] ) {
+            greatestDecrease = [finances[i][0], finances[i][1]]
+         }
+       // console.log(greatestIncrease[1], greatestDecrease[1]);
+    }
+   }
 }
 //console.log(total)
 
 
 //average of the changes in Profit/Losses over the entire period
-
+for ( var i = 0; i < newArray.length; i++ ) {
+    netChange += newArray[i]
+    //console.log(newArray, netChange)
+}
 /* need to track what the total change in profits is from month to month and then find the average. 
 (Total/Number of months)
 */
-average = total/totalMonths
-//console.log(average);
-
-//The greatest increase in profits (date and amount) over the entire period.
-
-//The greatest decrease in losses (date and amount) over the entire period.
+average = Math.round((netChange/86) * 100) / 100;
+ //console.log(average);
 
 
 
 
 
-/* Financial Analysis
-----------------------------
-Total Months: 25
-Total: $2561231
-Average  Change: $-2315.12
-Greatest Increase in Profits: Feb-2012 ($1926159)
-Greatest Decrease in Profits: Sep-2013 ($-2196167)
-*/
 
+// Financial Analysis
+var analysis = 'Financial Analysis' + '\n' + '----------------------' + '\n' + 'Total Months: ' + totalMonths + '\n' + 'Total: £' + total + '\n' + 'Average Change: £' + average + '\n' + 'Greatest Increase: ' + greatestIncrease[0] + ':  $' + greatestIncrease[1] + '\n' + 'Greatest Decrease' + greatestDecrease[0] + ':  $' + greatestDecrease[1] 
 
-console.log('Financial Analysis');
-console.log('----------------------');
+console.log(analysis);
+/* console.log('----------------------');
 console.log('Total Months: ' + totalMonths);
-console.log('Total: ' + math.round(total));
-console.log('Average Change: ' + average);
-//console.log('Greatest Increase in Profits: ' + );
-//console.log('Greatest Decrease in Profits: ' + );
+console.log('Total: £' + total);
+console.log('Average Change: £' + average);
+console.log('Greatest Increase in Profits: mm-yy £' + );
+console.log('Greatest Decrease in Profits: mm-yy £' + ); */
 
-
-/* for var infor var Janif
-(typeof finances !== Stringtotal +=finances
-    change
-    */
+var analysisEl = document.getElementById('analysis')
+analysisEl.textContent = analysis
