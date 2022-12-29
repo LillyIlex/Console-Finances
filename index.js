@@ -149,7 +149,7 @@ average = Math.round((netChange/86) * 100) / 100;
 
 
 // Financial Analysis
-var analysis = 'Financial Analysis' + '\n' + '----------------------' + '\n' + 'Total Months: ' + totalMonths + '\n' + 'Total: £' + total + '\n' + 'Average Change: £' + average + '\n' + 'Greatest Increase: ' + greatestIncrease[0] + ':  $' + greatestIncrease[1] + '\n' + 'Greatest Decrease' + greatestDecrease[0] + ':  $' + greatestDecrease[1] 
+var analysis = 'Financial Analysis' + '\n' + '----------------------' + '\n' + 'Total Months: ' + totalMonths + '\n' + 'Total: £' + total + '\n' + 'Average Change: £' + average + '\n' + 'Greatest Increase: ' + greatestIncrease[0] + ':  $' + greatestIncrease[1] + '\n' + 'Greatest Decrease: ' + greatestDecrease[0] + ':  $' + greatestDecrease[1] 
 
 console.log(analysis);
 /* console.log('----------------------');
