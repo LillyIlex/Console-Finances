@@ -93,10 +93,8 @@ var totalMonths = finances.length
 
 var total = 0
 var average = 0
-var averageChange
 var net = 0
 var greatestIncrease = ["", 0] 
-var currentIncrease
 var newArray = []
 var greatestDecrease = ["", 9999999999999]
 var netChange = 0
@@ -115,12 +113,10 @@ for (var i = 0; i < finances.length; i++) {
          net = finances[i][j];
       //   console.log(net);
          newArray.push(change);
-
          //The greatest increase in profits (date and amount) over the entire period.
          if ( change > greatestIncrease[1] ) {
             greatestIncrease = [finances[i][0], finances[i][1]]
          }
-
          //The greatest decrease in losses (date and amount) over the entire period.
          if ( change < greatestDecrease[1] ) {
             greatestDecrease = [finances[i][0], finances[i][1]]
@@ -141,12 +137,6 @@ for ( var i = 0; i < newArray.length; i++ ) {
 (Total/Number of months)
 */
 average = Math.round((netChange/86) * 100) / 100;
- //console.log(average);
-
-
-
-
-
 
 // Financial Analysis
 var analysis = 'Financial Analysis' + '\n' + '----------------------' + '\n' + 'Total Months: ' + totalMonths + '\n' + 'Total: £' + total + '\n' + 'Average Change: £' + average + '\n' + 'Greatest Increase: ' + greatestIncrease[0] + ':  $' + greatestIncrease[1] + '\n' + 'Greatest Decrease: ' + greatestDecrease[0] + ':  $' + greatestDecrease[1] 
